@@ -240,14 +240,18 @@ ul {
   );
 }
 
-/* Título y nav centrados */
+/* Título y nav centrados: se empuja hacia abajo con padding-top
+   para que nunca quede debajo del logo (izquierda) ni de los
+   botones de autenticación/carrito (derecha), sin importar el
+   ancho de pantalla ni el largo del título. */
 .header-main {
   text-align: center;
+  padding-top: 128px;
 }
 
 .header-main h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
   letter-spacing: 1px;
   margin-bottom: 28px;
   font-weight: 700;
@@ -302,7 +306,7 @@ ul {
   position: absolute;
   top: 10px;
   left: var(--space-xl);
-  width: 210px;
+  width: 160px;
   display: block;
   cursor: pointer;
   transition: transform var(--transition-fast);
@@ -1968,7 +1972,7 @@ ul {
   .header-logo {
     top: 8px;
     left: var(--space-md);
-    width: 140px;
+    width: 120px;
   }
 
   .header-actions {
@@ -1989,6 +1993,10 @@ ul {
 
   .usuario-info span {
     display: none;
+  }
+
+  .header-main {
+    padding-top: 95px;
   }
 
   .header-main h1 {
@@ -2060,6 +2068,10 @@ ul {
     top: 8px;
     right: 8px;
     gap: 4px;
+  }
+
+  .header-main {
+    padding-top: 8px;
   }
 
   .btn-auth {
