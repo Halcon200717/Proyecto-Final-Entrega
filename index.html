@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Integración de Sistemas HW - Hardware de alta gama para desarrolladores y gamers en Monte Grande, Buenos Aires."
+    />
+    <meta name="theme-color" content="#0f2027" />
+    <title>Integración de Sistemas HW</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- =============================================
+         HEADER: Widget clima + título + navegación
+    ============================================== -->
+    <header class="site-header">
+      <!-- Logo HW -->
+      <a
+        class="header-logo"
+        href="index.html"
+        aria-label="Integración de Sistemas HW — volver al inicio"
+      >
+        <svg viewBox="0 0 170 115" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>Logo de Integración de Sistemas HW</title>
+          <polygon points="85,12 100.59,21 100.59,39 85,48 69.41,39 69.41,21" fill="none" stroke="#ff6b00" stroke-width="1.6"/>
+          <rect x="61" y="23" width="6" height="4" fill="#ff6b00"/>
+          <rect x="61" y="33" width="6" height="4" fill="#ff6b00"/>
+          <rect x="101" y="23" width="6" height="4" fill="#ff6b00"/>
+          <rect x="101" y="33" width="6" height="4" fill="#ff6b00"/>
+          <text x="85" y="34" font-size="9" font-weight="700" fill="#ffffff" text-anchor="middle">IS</text>
+          <text x="32" y="80" font-size="40" font-weight="700" fill="#ffffff">H</text>
+          <polygon points="80,46 64,74 74,74 60,88 84,68 72,68 80,46" fill="#ff6b00"/>
+          <text x="86" y="80" font-size="40" font-weight="700" fill="#ffffff">W</text>
+          <text x="85" y="104" font-size="11" font-weight="700" fill="#9fb3c8" text-anchor="middle" letter-spacing="0.5">INTEGRACIÓN DE SISTEMAS</text>
+        </svg>
+      </a>
+
+      <!-- Widget clima y reloj -->
+      <div class="header-widget">
+        <div class="weather-left">
+          <span id="weather-icon" aria-hidden="true">☀️</span>
+          <div class="weather-text">
+            <span id="temp-display">--°C</span>
+            <span id="city-display">Monte Grande</span>
+          </div>
+        </div>
+        <div class="clock-right">
+          <div id="time-display">00:00:00</div>
+          <div id="date-display">00/00/0000</div>
+        </div>
+      </div>
+
+      <!-- Título y navegación -->
+      <div class="header-main" id="header-main">
+        <h1>
+          Integración de Sistemas
+          <span class="accent" aria-label="Hardware">HW</span>
+        </h1>
+
+        <nav aria-label="Navegación principal">
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li>
+              <a
+                href="#productos"
+                class="btn-hero"
+                aria-label="Ir al catálogo de productos"
+              >
+                Ver catálogo
+              </a>
+            </li>
+            <li><a href="#resenas">Reseñas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Autenticación + Carrito -->
+      <div class="header-actions">
+        <div class="auth-buttons" id="auth-buttons">
+          <!-- Estado: invitado -->
+          <button class="btn-auth" id="btn-login" type="button">
+            Iniciar sesión
+          </button>
+          <button
+            class="btn-auth btn-auth--outline"
+            id="btn-registro"
+            type="button"
+          >
+            Registrarse
+          </button>
+
+          <!-- Estado: usuario logueado (oculto por defecto) -->
+          <div class="usuario-info" id="usuario-info" hidden>
+            <span id="usuario-nombre-display"></span>
+            <button
+              class="btn-auth btn-auth--outline"
+              id="btn-logout"
+              type="button"
+            >
+              Salir
+            </button>
+          </div>
+        </div>
+
+        <button
+          class="carrito-btn"
+          id="btn-carrito"
+          type="button"
+          aria-label="Abrir carrito de compras"
+        >
+          🛒
+          <span class="carrito-count" id="carrito-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- =============================================
+             HERO
+        ============================================== -->
+      <section id="inicio" class="hero">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Hardware de alta gama</p>
+          <h2>
+            Potencia real para <span class="accent">desarrolladores</span> y
+            gamers
+          </h2>
+          <p class="hero-sub">
+            Laptops, teclados y placas gráficas seleccionados para rendir al
+            máximo.
+          </p>
+        </div>
+      </section>
+
+      <!-- =============================================
+             PRODUCTOS
+        ============================================== -->
+      <section id="productos" class="productos-section">
+        <div class="section-header">
+          <h2>Nuestros Productos</h2>
+          <p class="section-sub">
+            Hacé doble clic en cualquier producto para ver los detalles.
+          </p>
+        </div>
+
+        <!-- Buscador -->
+        <div class="buscador-container">
+          <input
+            type="search"
+            id="buscador"
+            placeholder="🔍 Buscar producto..."
+            aria-label="Buscar producto"
+            autocomplete="off"
+            spellcheck="false"
+            autocapitalize="none"
+          />
+        </div>
+
+        <!-- Filtros -->
+        <div
+          class="filtros-container"
+          role="group"
+          aria-label="Filtrar por categoría"
+        >
+          <button class="btn-filtro active" data-filtro="todos">Todos</button>
+          <button class="btn-filtro" data-filtro="laptops">Laptops</button>
+          <button class="btn-filtro" data-filtro="teclados">Teclados</button>
+          <button class="btn-filtro" data-filtro="graficas">
+            Placas Gráficas
+          </button>
+        </div>
+
+        <!-- Contador de resultados -->
+        <p class="resultado-count" id="resultado-count" aria-live="polite"></p>
+
+        <!-- Grilla de productos (se llena con JS) -->
+        <div id="contenedor-productos" class="productos-container"></div>
+
+        <!-- Mensaje sin resultados -->
+        <div id="sin-resultados" class="sin-resultados" hidden>
+          <p>😕 No encontramos productos que coincidan con tu búsqueda.</p>
+        </div>
+      </section>
+
+      <!-- =============================================
+             RESEÑAS
+        ============================================== -->
+      <section id="resenas" class="resenas-section">
+        <div class="section-header">
+          <h2>Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="resenas-grid">
+          <article class="resena-card">
+            <img
+              class="resena-avatar"
+              src="https://ui-avatars.com/api/?name=Juan+Perez&background=2563eb&color=fff&rounded=true&size=96&bold=true"
+              alt="Foto de perfil de Juan Pérez"
+              loading="lazy"
+              width="64"
+              height="64"
+            />
+            <p>
+              "Excelente atención y los productos son de primera calidad. Súper
+              recomendados."
+            </p>
+            <span>— Juan Pérez</span>
+          </article>
+          <article class="resena-card">
+            <img
+              class="resena-avatar"
+              src="https://ui-avatars.com/api/?name=Maria+Rodriguez&background=ff6b00&color=fff&rounded=true&size=96&bold=true"
+              alt="Foto de perfil de María Rodríguez"
+              loading="lazy"
+              width="64"
+              height="64"
+            />
+            <p>
+              "La velocidad de envío y el asesoramiento técnico marcan la
+              diferencia."
+            </p>
+            <span>— María Rodríguez</span>
+          </article>
+          <article class="resena-card">
+            <img
+              class="resena-avatar"
+              src="https://ui-avatars.com/api/?name=Carlos+Gomez&background=22c55e&color=fff&rounded=true&size=96&bold=true"
+              alt="Foto de perfil de Carlos Gómez"
+              loading="lazy"
+              width="64"
+              height="64"
+            />
+            <p>
+              "Compré una laptop para programar y rinde por encima de mis
+              expectativas."
+            </p>
+            <span>— Carlos Gómez</span>
+          </article>
+          <article class="resena-card">
+            <img
+              class="resena-avatar"
+              src="https://ui-avatars.com/api/?name=Lucia+Fernandez&background=9333ea&color=fff&rounded=true&size=96&bold=true"
+              alt="Foto de perfil de Lucía Fernández"
+              loading="lazy"
+              width="64"
+              height="64"
+            />
+            <p>
+              "Arme toda mi PC gamer con piezas de acá. Los precios son muy
+              competitivos y todo llegó perfecto."
+            </p>
+            <span>— Lucía Fernández</span>
+          </article>
+          <article class="resena-card">
+            <img
+              class="resena-avatar"
+              src="https://ui-avatars.com/api/?name=Martin+Alvarez&background=0ea5e9&color=fff&rounded=true&size=96&bold=true"
+              alt="Foto de perfil de Martín Álvarez"
+              loading="lazy"
+              width="64"
+              height="64"
+            />
+            <p>
+              "Tenía dudas sobre qué teclado elegir y me asesoraron por chat
+              en minutos. Muy conforme con la compra."
+            </p>
+            <span>— Martín Álvarez</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- =============================================
+             CONTACTO
+        ============================================== -->
+      <section id="contacto" class="contacto-section">
+        <div class="form-container">
+          <div class="section-header">
+            <h2>Contacto</h2>
+            <p class="section-sub">
+              Envianos un mensaje y te respondemos pronto.
+            </p>
+          </div>
+          <!-- Reemplazar "TU_ID_AQUÍ" por el ID real de Formspree antes de publicar el sitio web -->
+          <form
+            action="https://formspree.io/f/TU_ID_AQUÍ"
+            method="POST"
+            class="contacto-form"
+            id="form-contacto"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="nombre">Nombre completo</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                placeholder="Ej: Mauro García"
+                autocomplete="name"
+                minlength="3"
+                maxlength="80"
+              />
+              <span class="form-error" id="error-nombre"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                name="_replyto"
+                required
+                placeholder="tu@email.com"
+                autocomplete="email"
+                maxlength="120"
+              />
+              <span class="form-error" id="error-email"></span>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Tu mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                required
+                placeholder="¿En qué podemos ayudarte?"
+                minlength="10"
+                maxlength="800"
+              ></textarea>
+              <span class="form-error" id="error-mensaje"></span>
+            </div>
+            <button type="submit" class="btn-submit">Enviar consulta</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- =============================================
+         FOOTER
+    ============================================== -->
+    <footer class="site-footer">
+      <!-- =============================================
+           BARRA INFORMATIVA (contacto, horarios, canales)
+      ============================================== -->
+      <div class="footer-info-bar">
+        <div class="footer-info-bar-inner">
+        <div class="footer-info-brand">
+          <a
+            class="footer-logo"
+            href="index.html"
+            aria-label="Integración de Sistemas HW — volver al inicio"
+          >
+            <svg viewBox="0 0 170 115" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Logo de Integración de Sistemas HW</title>
+              <polygon points="85,12 100.59,21 100.59,39 85,48 69.41,39 69.41,21" fill="none" stroke="#ff6b00" stroke-width="1.6"/>
+              <rect x="61" y="23" width="6" height="4" fill="#ff6b00"/>
+              <rect x="61" y="33" width="6" height="4" fill="#ff6b00"/>
+              <rect x="101" y="23" width="6" height="4" fill="#ff6b00"/>
+              <rect x="101" y="33" width="6" height="4" fill="#ff6b00"/>
+              <text x="85" y="34" font-size="9" font-weight="700" fill="#111827" text-anchor="middle">IS</text>
+              <text x="32" y="80" font-size="40" font-weight="700" fill="#111827">H</text>
+              <polygon points="80,46 64,74 74,74 60,88 84,68 72,68 80,46" fill="#ff6b00"/>
+              <text x="86" y="80" font-size="40" font-weight="700" fill="#111827">W</text>
+              <text x="85" y="104" font-size="11" font-weight="700" fill="#6b7280" text-anchor="middle" letter-spacing="0.5">INTEGRACIÓN DE SISTEMAS</text>
+            </svg>
+          </a>
+
+          <div class="footer-social" aria-label="Redes sociales">
+            <a href="#" class="footer-social-icon" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h2.6l.4-3H14V9z"/></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l6 3-6 3V9z"/></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="X (Twitter)" title="X">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M3 3l7.5 9.5L3.4 21h2.6l6-6.7 4.7 6.7H21l-7.9-10L20.4 3h-2.6l-5.6 6.3L7.6 3H3z"/></svg>
+            </a>
+            <a href="#" class="footer-social-icon" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="7.2" cy="8" r="1.3"/><path d="M6.3 10.5h1.8V17H6.3v-6.5zM10 10.5h1.7v.9c.5-.7 1.2-1.1 2.2-1.1 1.6 0 2.6 1 2.6 2.9V17h-1.8v-3.4c0-1-.4-1.6-1.3-1.6-.9 0-1.4.6-1.4 1.6V17H10v-6.5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-info-col">
+          <h4>Atención al cliente:</h4>
+          <p class="footer-info-tel">0800 555 4090</p>
+          <p class="footer-info-tel">0810 888 2200</p>
+          <p class="footer-info-horario">
+            LU-VI de 09:00 a 18:00<br />
+            SA de 09:00 a 13:00
+          </p>
+        </div>
+
+        <div class="footer-info-col">
+          <h4>Cobranza de créditos:</h4>
+          <p class="footer-info-email">
+            <a href="mailto:cobranza@ProyectoHW.com.ar">cobranza@ProyectoHW.com.ar</a>
+          </p>
+          <h4 class="footer-info-subtitle">Servicios a empresas:</h4>
+          <p class="footer-info-texto">Ventas corporativas</p>
+        </div>
+
+        <div class="footer-info-col">
+          <h4>Venta telefónica:</h4>
+          <p class="footer-info-tel">0810 777 6600</p>
+          <p class="footer-info-horario">
+            LU-VI de 08:00 a 20:00<br />
+            SA de 09:00 a 13:00
+          </p>
+        </div>
+
+        <div class="footer-info-col footer-info-whatsapp">
+          <span class="footer-whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" aria-hidden="true">
+              <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3zm0 16.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.6.7.7-2.5-.2-.3A7.3 7.3 0 1 1 12 19.3zm4-5.5c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-1.3-.6-2.1-1.1-3-2.5-.1-.2-.1-.4.1-.5l.5-.6c.1-.2.1-.4 0-.5l-.5-1.2c-.1-.3-.3-.3-.5-.3h-.5c-.2 0-.4.1-.5.3-.2.3-.7.9-.7 1.9 0 1.1 1 2.6 1.2 2.8.2.2 1.9 2.9 4.6 3.9 2.2.8 2.2.5 2.6.5.4 0 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.2-.4-.2z"/>
+            </svg>
+          </span>
+          <div>
+            <h4>Asistente virtual</h4>
+            <p class="footer-info-tel">11 3000 4000</p>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <p class="footer-copy">
+        &copy; 2026 Integración de Sistemas HW &mdash; Monte Grande, Buenos
+        Aires
+      </p>
+    </footer>
+
+    <!-- =============================================
+         MODAL DE PRODUCTO
+    ============================================== -->
+    <div
+      id="modal-producto"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-titulo"
+      tabindex="-1"
+      hidden
+    >
+      <div class="modal-content">
+        <button class="close-modal" aria-label="Cerrar detalle">&times;</button>
+        <img id="modal-imagen" src="" alt="" loading="lazy" decoding="async" />
+        <div class="modal-info">
+          <h3 id="modal-titulo"></h3>
+          <p id="modal-descripcion"></p>
+          <div class="modal-footer">
+            <div class="modal-precio-box">
+              <span class="precio-label">Precio</span>
+              <span id="modal-precio" class="precio-destacado"></span>
+            </div>
+            <button class="btn-modal-carrito" id="btn-modal-carrito">
+              🛒 Agregar al carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+         PANEL DEL CARRITO
+    ============================================== -->
+    <div
+      id="panel-carrito"
+      class="panel-carrito"
+      hidden
+      aria-label="Carrito de compras"
+    >
+      <div class="panel-carrito-header">
+        <h3>🛒 Carrito</h3>
+        <button id="cerrar-carrito" aria-label="Cerrar carrito">&times;</button>
+      </div>
+      <div class="panel-carrito-body">
+        <div id="lista-carrito" class="lista-carrito"></div>
+        <div class="panel-carrito-footer">
+        <div class="carrito-resumen">
+          <div class="resumen-linea">
+            <span>Subtotal</span>
+            <span id="subtotal-carrito">$0</span>
+          </div>
+          <div class="resumen-linea">
+            <span>Envío</span>
+            <span id="envio-carrito">$0</span>
+          </div>
+          <div class="resumen-linea" id="interes-carrito-fila" hidden>
+            <span>Interés por cuotas</span>
+            <span class="interes-monto">+ $0</span>
+          </div>
+          <div class="resumen-linea resumen-linea--total">
+            <span>Total</span>
+            <strong id="total-carrito">$0</strong>
+          </div>
+          <p
+            class="resumen-cuotas-detalle"
+            id="total-carrito-detalle"
+            hidden
+          ></p>
+        </div>
+
+        <div class="metodo-pago-group">
+          <span class="metodo-pago-titulo">Método de pago</span>
+
+          <div
+            class="metodo-pago-opciones"
+            role="radiogroup"
+            aria-label="Método de pago"
+          >
+            <label class="metodo-pago-opcion">
+              <input
+                type="radio"
+                name="metodo-pago"
+                value="debito"
+                checked
+              />
+              <span class="metodo-pago-card">
+                <span class="metodo-pago-nombre">💳 Débito</span>
+                <span class="metodo-pago-logos">
+                  <span class="logo-badge logo-visa">VISA</span>
+                  <span class="logo-badge logo-mastercard" aria-label="Mastercard">
+                    <span class="mc-circle mc-circle--left"></span>
+                    <span class="mc-circle mc-circle--right"></span>
+                  </span>
+                </span>
+              </span>
+            </label>
+
+            <label class="metodo-pago-opcion">
+              <input type="radio" name="metodo-pago" value="credito" />
+              <span class="metodo-pago-card">
+                <span class="metodo-pago-nombre">💳 Crédito</span>
+                <span class="metodo-pago-logos">
+                  <span class="logo-badge logo-visa">VISA</span>
+                  <span class="logo-badge logo-mastercard" aria-label="Mastercard">
+                    <span class="mc-circle mc-circle--left"></span>
+                    <span class="mc-circle mc-circle--right"></span>
+                  </span>
+                </span>
+              </span>
+            </label>
+
+            <label class="metodo-pago-opcion">
+              <input type="radio" name="metodo-pago" value="mercadopago" />
+              <span class="metodo-pago-card">
+                <span class="metodo-pago-nombre">🏦 Mercado Pago</span>
+                <span class="metodo-pago-logos">
+                  <span class="logo-badge logo-mercadopago">Mercado Pago</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="metodo-pago-opcion">
+              <input type="radio" name="metodo-pago" value="paypal" />
+              <span class="metodo-pago-card">
+                <span class="metodo-pago-nombre">🅿️ PayPal</span>
+                <span class="metodo-pago-logos">
+                  <span class="logo-badge logo-paypal">PayPal</span>
+                </span>
+              </span>
+            </label>
+          </div>
+
+          <!-- Cuotas: solo visible cuando el método es "Tarjeta de crédito" -->
+          <div class="cuotas-container" id="cuotas-container" hidden>
+            <label for="cuotas-pago">Cuotas</label>
+            <select id="cuotas-pago" name="cuotas-pago">
+              <option value="1">1 pago — sin interés</option>
+              <option value="3">3 cuotas — 2% de interés</option>
+              <option value="6">6 cuotas — 4% de interés</option>
+              <option value="12">12 cuotas — 8% de interés</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-submit" id="btn-finalizar">Finalizar compra</button>
+        <button class="btn-vaciar" id="btn-vaciar">Vaciar carrito</button>
+        </div>
+      </div>
+    </div>
+    <div id="overlay-carrito" class="overlay-carrito" hidden></div>
+
+    <!-- Toast container -->
+    <div
+      id="toast-container"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- =============================================
+         MODAL DE INICIO DE SESIÓN
+    ============================================== -->
+    <div
+      id="modal-login"
+      class="modal modal-auth"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="login-titulo"
+      tabindex="-1"
+      hidden
+    >
+      <div class="modal-content modal-auth-content">
+        <button class="close-modal" id="close-login" aria-label="Cerrar">
+          &times;
+        </button>
+        <div class="modal-auth-info">
+          <h3 id="login-titulo">Iniciar sesión</h3>
+          <form id="form-login" class="auth-form" novalidate>
+            <div class="form-group">
+              <label for="login-email">Correo electrónico</label>
+              <input
+                type="email"
+                id="login-email"
+                name="login-email"
+                required
+                placeholder="tu@email.com"
+                autocomplete="email"
+              />
+              <span class="form-error" id="error-login-email"></span>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Contraseña</label>
+              <input
+                type="password"
+                id="login-password"
+                name="login-password"
+                required
+                placeholder="••••••••"
+                autocomplete="current-password"
+                minlength="6"
+              />
+              <span class="form-error" id="error-login-password"></span>
+            </div>
+            <button type="submit" class="btn-submit">Ingresar</button>
+            <p class="auth-switch">
+              ¿No tenés cuenta?
+              <button type="button" class="auth-link" id="ir-a-registro">
+                Registrate acá
+              </button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+         MODAL DE REGISTRO
+    ============================================== -->
+    <div
+      id="modal-registro"
+      class="modal modal-auth"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="registro-titulo"
+      tabindex="-1"
+      hidden
+    >
+      <div class="modal-content modal-auth-content">
+        <button class="close-modal" id="close-registro" aria-label="Cerrar">
+          &times;
+        </button>
+        <div class="modal-auth-info">
+          <h3 id="registro-titulo">Crear cuenta</h3>
+          <form id="form-registro" class="auth-form" novalidate>
+            <div class="form-group">
+              <label for="registro-nombre">Nombre completo</label>
+              <input
+                type="text"
+                id="registro-nombre"
+                name="registro-nombre"
+                required
+                placeholder="Ej: Mauro García"
+                autocomplete="name"
+                minlength="3"
+              />
+              <span class="form-error" id="error-registro-nombre"></span>
+            </div>
+            <div class="form-group">
+              <label for="registro-email">Correo electrónico</label>
+              <input
+                type="email"
+                id="registro-email"
+                name="registro-email"
+                required
+                placeholder="tu@email.com"
+                autocomplete="email"
+              />
+              <span class="form-error" id="error-registro-email"></span>
+            </div>
+            <div class="form-group">
+              <label for="registro-password">Contraseña</label>
+              <input
+                type="password"
+                id="registro-password"
+                name="registro-password"
+                required
+                placeholder="Mínimo 6 caracteres"
+                autocomplete="new-password"
+                minlength="6"
+              />
+              <span class="form-error" id="error-registro-password"></span>
+            </div>
+            <button type="submit" class="btn-submit">Crear cuenta</button>
+            <p class="auth-switch">
+              ¿Ya tenés cuenta?
+              <button type="button" class="auth-link" id="ir-a-login">
+                Iniciá sesión
+              </button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+         BOTÓN "VOLVER ARRIBA"
+    ============================================== -->
+    <button
+      type="button"
+      id="btn-volver-arriba"
+      class="btn-volver-arriba"
+      aria-label="Volver al inicio de la página"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        width="22"
+        height="22"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
